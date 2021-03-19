@@ -20,6 +20,9 @@ word2 = "Truck"
 
 # Your code below:
 
+result = word1[1:] + word2[0] + word2[2:]
+print(result)
+
 
 
 
@@ -59,5 +62,3 @@ word2 = "Truck"
 # Solution Below:
 # result = word1[1:] + word2[0:1] + word2[2:]
 # print(result)
-
-

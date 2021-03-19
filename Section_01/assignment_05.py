@@ -24,6 +24,10 @@ word = "Cool"
 
 # Your code below:
 
+chars_split_position = int(chars.__len__() / 2)
+result = chars[:chars_split_position] + word + chars[chars_split_position:]
+
+print(result)
 
 
 
@@ -62,5 +66,3 @@ word = "Cool"
 # size = len(chars)
 # idx = int(size/2) # dividing results in a float datatype.
 # print(chars[:idx] + word + chars[idx:])
-
-

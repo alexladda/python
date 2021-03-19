@@ -6,6 +6,9 @@
 
 """
 
+result = 15 % 4
+print(result)
+
 
 
 
@@ -48,4 +51,3 @@
 
 # remainder = 15 % 4
 # print(remainder)
-
