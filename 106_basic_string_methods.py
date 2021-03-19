@@ -1,3 +1,5 @@
+# practise practise
+
 sentence = "this is a sentence"
 print(sentence)
 
@@ -12,3 +14,5 @@ print(sentence)
 
 sentence = "12345"
 print(sentence.isdigit())
+print(sentence.startswith("123"))
+print(sentence.startswith("345", 2))
