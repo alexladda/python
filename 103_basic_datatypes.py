@@ -15,8 +15,6 @@ print(data_type)
 
 data_type = type(True)
 print(data_type)
-
-
 # single quotes     ''
 # double quotes     ""
 
