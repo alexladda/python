@@ -15,7 +15,16 @@ Example:
 
 # Your Code Below:
 
+def key_list_items(arg, **kwargs):
+    print("you gave me this:")
+    print(arg)
+    print(kwargs)
+    print("so I give you this:")
+    print(kwargs[arg][-2])
 
+key_list_items("people", things=['book', 'tv'], people=['pete', 'mike', 'jan', 'tom'])
+key_list_items("cars", items=['bread', 'key'], cars=['old one', 'new one', 'red one', 'blue one'], people=['pete', 'mike', 'jan', 'tom'])
+key_list_items("people", items=['bread', 'key'], cars=['old one', 'new one', 'red one', 'blue one'], people=['pete', 'mike', 'jan', 'tom'])
 
 
 

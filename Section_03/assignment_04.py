@@ -14,8 +14,12 @@ Example:
 
 # Your code below:
 
+this_list=[1,2,3,4,5], ['a', 'b', 'c'], ['mike', 'john']
 
+def last_list(arg):
+    return list(arg).pop()
 
+print(last_list(this_list))
 
 
 

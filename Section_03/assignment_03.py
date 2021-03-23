@@ -11,6 +11,18 @@ argument as individual elements in the list.
 """
 # Your Code Below:
 
+my_list = [1,2,3,'some data']
+my_string = 'there will be multiple words and letters'
+
+
+def multi_merge(list_arg, string_arg):
+    words = string_arg.split()
+    characters = list(string_arg)
+    return list_arg + words + characters
+
+merged_list = multi_merge(my_list, my_string)
+print(merged_list)
+
 
 
 

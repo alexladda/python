@@ -8,8 +8,11 @@
 """
 # Your Code Below:
 
+def separate(string):
+    return list(string)
 
 
+print(separate('asdf'))
 
 
 
