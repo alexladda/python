@@ -11,6 +11,21 @@ who owns a bike, a laptop and boat.
 
 # your code below:
 
+my_data = [
+    {
+    'name': 'Tom',
+    'salary': 20000,
+    'age': 22,
+    'items': ['jacket', 'car', 'TV']
+    },
+    {
+    'name': 'Mike',
+    'salary': 24000,
+    'age': 27,
+    'items': ['bike', 'laptop', 'boat']
+    }]
+
+print(my_data)
 
 
 
