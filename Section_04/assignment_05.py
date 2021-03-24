@@ -15,8 +15,13 @@ first3([1, 2, 3, 4, 5]) → False
 
 # Your Code Below:
 
+def first3(list):
+    for item in list[0:3]:
+        if item == 6:
+            return True
+    return False
 
-
+print(first3([6,0]))
 
 
 

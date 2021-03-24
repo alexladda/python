@@ -16,11 +16,13 @@ Example:
 
 this_list=[1,2,3,4,5], ['a', 'b', 'c'], ['mike', 'john']
 
-def last_list(arg):
-    return list(arg).pop()
+def last_list(*args):
+    pop_list = list(args)
+    return pop_list.pop()
 
 print(last_list(this_list))
 
+print(last_list([1,2,3], [9,9,9], ['a','b','c']))
 
 
 

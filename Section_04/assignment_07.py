@@ -14,9 +14,20 @@ EXAMPLE:
 
 #Your Code Below:
 
+def string_match(string1, string2):
+    counter = 0
+    for window in range(len(string1)-1):
+        if string1[window:window+2] == string2[window:window+2]:
+            counter += 1
+    return counter
 
 
+print(string_match('xxcaazz', 'xxbaaz'))
+print(string_match('abc', 'abc'))
+print(string_match('abc', 'axc'))
+print(string_match('  ', '  '))
 
+print(string_match('  ', '  asdf  '))
 
 
 

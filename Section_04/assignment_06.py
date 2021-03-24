@@ -18,11 +18,20 @@ last2('axxxaaxx') → 2
 
 # Your Code Below:
 
+def last2(str):
+    mark = str[-2:]
+    counter = 0
+    for window in range(len(str)-3):
+        if str[window:window+2] == mark:
+            counter += 1
+    return counter
 
 
-print(last2('hixxhi')) #→ 1
-print(last2('xaxxaxaxx')) #→ 1
-print(last2('axxxxaaxx')) #→ 3
+# print(last2('hixxhi')) #→ 1
+# print(last2('xaxxaxaxx')) #→ 1
+# print(last2('axxxxaaxx')) #→ 3
+
+print(last2(input("you go! ")))
 
 
 
