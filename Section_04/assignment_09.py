@@ -39,8 +39,50 @@ d= {
 # Your Code Below:
 # --------------------------------------
 
+# clear screen
+from os import system
+system('clear')
+
+def get_id_from_fr(item):
+    """
+    returns fr[item]
+    (email or id)
+    """
+    split = fr[item].find('|')  # getting split position
+    return fr[item][:split]     # email or id
+
+def get_new_id():
+    """
+    looks up existings ids (not emails) and returns an integer += 1 of the maximal value
+    """
+    id_list = []
+    for item in range(len(fr)):
+        split = fr[item].find('|')  # getting split position
+        id = fr[item][:split]
+        if '@' not in id:
+            id_list.append(int(id))
+    return max(id_list) + 1              # id list
+
+def update_fr(index, id):
+    """
+    updates fr[index] with id
+    """
+    split = fr[index].find('|')  # getting split position
+    rest = fr[index][split:]    # cut of old index
+    fr[index] = str(id) + rest       # prepend new id
+    print('  update_fr(): "fr[{0}] updated: {1}"'.format(index, fr[index]))
 
 
+
+
+
+for entry in range(len(fr)):
+    if get_id_from_fr(entry) in d:
+        print('yes in d')
+        update_fr(entry, d[get_id_from_fr(entry)])
+    else:
+        print('not in d')
+        update_fr(entry, get_new_id())
 
 
 
