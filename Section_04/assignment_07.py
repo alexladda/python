@@ -26,8 +26,8 @@ print(string_match('xxcaazz', 'xxbaaz'))
 print(string_match('abc', 'abc'))
 print(string_match('abc', 'axc'))
 print(string_match('  ', '  '))
-
 print(string_match('  ', '  asdf  '))
+print(string_match('  asdfasdfasdfasdf ', '  asdf  '))
 
 
 

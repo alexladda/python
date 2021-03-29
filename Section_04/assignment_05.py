@@ -21,18 +21,15 @@ def first3(list):
             return True
     return False
 
-print(first3([6,0]))
+print(first3([1, 2, 6, 3, 4])) # True
+print(first3([1, 2, 3, 4, 6])) # False
+print(first3([1, 2, 3, 4, 5])) # False
+print(first3([1,2,6,3,0,0])) # True
+print(first3([1,2,3,3,0,6])) # False
+print(first3([6])) # True
+print(first3([])) # False
 
-
-
-
-print(first3([1,2,6,3,0,0])) # true
-print(first3([1,2,3,3,0,6])) # false
-print(first3([6])) # true
-print(first3([])) # false
-
-
-
+print([6][2:3])
 
 
 

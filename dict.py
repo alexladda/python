@@ -7,6 +7,8 @@ for key in dict:
     print(key)
     print(dict[key])
 
+
+
 # for key in d.keys():
 #     print(key)
 

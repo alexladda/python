@@ -26,7 +26,7 @@ def sum78(list):
         elif i == 8:
             counting = True
         elif counting:
-            result = result + i
+            result += i
         elif not counting:
             continue
     return result

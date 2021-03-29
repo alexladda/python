@@ -72,10 +72,6 @@ def update_fr(index, id):
     fr[index] = str(id) + rest       # prepend new id
     print('  update_fr(): "fr[{0}] updated: {1}"'.format(index, fr[index]))
 
-
-
-
-
 for entry in range(len(fr)):
     if get_id_from_fr(entry) in d:
         print('yes in d')
