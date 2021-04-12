@@ -4,10 +4,14 @@ import sys
 import os
 import re
 
-# directory_containing_files = "/Users/imtiazahmad/PycharmProjects/Assignments/Section_06/project_files" #sys.argv[1]
-# words_to_aggregate = ["hello", "Peter", "computer"] #sys.argv[2:]
-directory_containing_files = sys.argv[1]
-words_to_aggregate = sys.argv[2:]
+
+# directory_containing_files = sys.argv[1]
+# words_to_aggregate = sys.argv[2:]
+
+dev_path = "/Users/alex/repo/python101/Section_06/project_files"
+print(dev_path)
+directory_containing_files = dev_path
+words_to_aggregate = ["there", "Michael", "running"]
 
 # Expected Output:
 # {"there": n, "Michael": n, "running": n}
@@ -15,50 +19,7 @@ words_to_aggregate = sys.argv[2:]
 # Your Code Below:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Solution:
+# Solution:
 # words_and_counts = {}
 #
 # for word in words_to_aggregate:
