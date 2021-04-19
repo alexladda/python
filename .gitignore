@@ -2,7 +2,7 @@ env*/
 *env/
 .DS_Store
 *.sock
-
+secret*
 
 # Beyond this point it's
 # https://github.com/github/gitignore/blob/master/Python.gitignore
