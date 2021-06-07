@@ -1,23 +1,56 @@
-# <open nginx (combined) log and read new lines>
-# <parse lines>
-# <store them in database>
-
 import time
 import sys
+import re
+import sqlite3
 
 
 def watch(logfile):
-    fp = open(logfile, 'r')
+    filepoll = open(logfile, 'r')
     while True:
-        newline = fp.readline()
-        # Once all lines are read this just returns ''
-        # until the file changes and a new line appears
+        newline = filepoll.readline()
+        # first this will read all lines all lines and return them
+        # after all existing lines are it will just return ''
+        # then if a new line apperears, it will return that line
 
         if newline:
-            data = re.search(lineformat, newline)
-            print(data)
+            currentline = re.search(lineformat, newline)
+            data = currentline.groupdict()
+            print("newline found")
+            print("=============")
+            print("writing to db: ", list(data.values()))
+            write(data)
+            print("             ")
         else:
             time.sleep(0.5)
+
+
+def write(data):
+    # try:
+    conn = sqlite3.connect('access_log.db')
+
+    conn.execute("""CREATE TABLE IF NOT EXISTS access_log (
+                    ipaddress TEXT,
+                    datetime TEXT,
+                    url TEXT,
+                    statuscode INTEGER,
+                    bytessent INTEGER,
+                    refferer TEXT,
+                    useragent TEXT
+                    )""")
+
+    conn.execute("""INSERT INTO access_log VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?)""",
+                 list(data.values()))
+    conn.commit()
+    # except:
+    #     print("Unable to connect to the database")
+    #     quit()
 
 
 logfile = sys.argv[1]
