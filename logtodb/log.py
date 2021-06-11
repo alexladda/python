@@ -3,13 +3,24 @@ import sys
 import re
 import sqlite3
 
-# specify which log file to analyse with command line argument
-LOGFILE = sys.argv[1]
+
+# Setting constants
+# -----------------
+
+# validating command line argument to specify location of logfile
+try:
+    LOGFILE = sys.argv[1]
+except IndexError:
+    print("Please specify log file.")
 # setting sqlite db file
 DB_FILE = 'access_log.db'
 # regex for nginx combined log format
 LINEFORMAT = re.compile(
     r"""(?P<ipaddress>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<dateandtime>\d{2}\/[a-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} (\+|\-)\d{4})\] ((\"(GET|POST) )(?P<url>.+)(http\/1\.1")) (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>(\-)|(.+))["]) (["](?P<useragent>.+)["])""", re.IGNORECASE)
+
+
+# defining Functions
+# ------------------
 
 
 def watch(LOGFILE):
@@ -65,7 +76,9 @@ def reset_database():
                     )""")
     conn.commit()
 
+# Programm
+# --------
+
 
 reset_database()
-
 watch(LOGFILE)
