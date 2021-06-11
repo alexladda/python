@@ -6,27 +6,21 @@ For the sake of brevity and clarity, these assumptions about the task were made:
 
 - I limited myself to the use of standard python libraries. However sqlalchemy and pandas would offer themselves for further development.
 - The scripts will be run on the same (Unix) machine as the log files.
-- These scripts were developed as a proof of concept and not with Test Driven Development methodology. Only very basic exception handling was implemented to show familiarity with the concept.
-- You will find a very basic unit test to show my familiarity with the concept.
+- Log rotation was not considered.
 
 # usage
 
-`$ python3 log.py <path/to/logfile>
+`$ python3 log.py <path/to/logfile> <path/to/dbfile>`
 
-(if no path is specified, it will default to /var/log/nginx/access.log)
+This will start the service that will continually monitor the specified log file. It will read all existing lines, write them to a sqlite database file, and will run until interrupted (CTRL - C).
 
+`$ python3 stats.py <path/to/dbfile>`
 
-## what does log.py do?
-
-usage:
-
-<open nginx (combined) log and read new lines>
-<parse lines>
-<store them in database>
+This runs the required SQL query against the specified file and prints the output to the console.
 
 
+# unittest
 
-## what does stats.py do?
+These scripts were developed as a proof of concept and not with Test Driven Development methodology. Only very basic exception handling and unit testing was implemented to show familiarity with the concept.
 
-<query db for records, group by status code>
-<print>
+`$ python3 -m log_test.py
