@@ -1,12 +1,23 @@
 import sqlite3
+import sys
 
-DB_FILE = 'access_log.db'
+try:
+    DBFILE = sys.argv[1]
+except IndexError:
+    print("Please specify log file.")
+    print("USAGE: $ python3 stats.py <path/to/logfile>")
+    quit()
 
-conn = sqlite3.connect(DB_FILE)
-r = conn.execute("""SELECT statuscode, COUNT()
-                FROM access_log
-                GROUP BY statuscode;""")
-output = r.fetchall()
 
-for statuscode in output:
-    print("status code", statuscode[0], "-", statuscode[1], "times")
+def read(DBFILE):
+    conn = sqlite3.connect(DBFILE)
+    r = conn.execute("""SELECT statuscode, COUNT()
+                    FROM access_log
+                    GROUP BY statuscode;""")
+    output = r.fetchall()
+    return output
+
+
+if __name__ == "__main__":
+    for statuscode in read(DBFILE):
+        print("status code", statuscode[0], "-", statuscode[1], "times")

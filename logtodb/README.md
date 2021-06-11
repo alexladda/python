@@ -21,6 +21,10 @@ This runs the required SQL query against the specified file and prints the outpu
 
 # unittest
 
-These scripts were developed as a proof of concept and not with Test Driven Development methodology. Only very basic exception handling and unit testing was implemented to show familiarity with the concept.
+These scripts were developed as a proof of concept and not with Test Driven Development methodology. Only very basic exception handling and unit testing was implemented to show familiarity with the concept. The follwing will test one function against a test a provided test database file.
 
-`$ python3 -m log_test.py
+`$ python3 -m unittest test_log.py`
+
+
+
+*June 6th, 2021 - Alexander Ladda - alex.ladda@gmail.com*

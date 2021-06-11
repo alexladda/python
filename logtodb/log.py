@@ -1,24 +1,12 @@
 import time
 import sys
+import os
+import errno
 import re
 import sqlite3
 
 
-# Setting constants
-# -----------------
-
-# validating command line argument to specify location of logfile
-try:
-    LOGFILE = sys.argv[1]
-except IndexError:
-    print("Please specify log file.")
-# setting sqlite db file
-DB_FILE = 'access_log.db'
-# regex for nginx combined log format
-LINEFORMAT = re.compile(
-    r"""(?P<ipaddress>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<dateandtime>\d{2}\/[a-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} (\+|\-)\d{4})\] ((\"(GET|POST) )(?P<url>.+)(http\/1\.1")) (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>(\-)|(.+))["]) (["](?P<useragent>.+)["])""", re.IGNORECASE)
-
-
+# ------------------
 # defining Functions
 # ------------------
 
@@ -48,7 +36,7 @@ def watch(LOGFILE):
 
 def write(data):
     # commiting data to the database
-    conn = sqlite3.connect(DB_FILE)
+    conn = sqlite3.connect(DBFILE)
     conn.execute("""INSERT INTO access_log VALUES (
                     ?,
                     ?,
@@ -63,7 +51,7 @@ def write(data):
 
 def reset_database():
     # resetting database fresh every time the script is started
-    conn = sqlite3.connect(DB_FILE)
+    conn = sqlite3.connect(DBFILE)
     conn.execute("""DROP TABLE IF EXISTS access_log""")
     conn.execute("""CREATE TABLE access_log (
                     ipaddress TEXT,
@@ -76,9 +64,36 @@ def reset_database():
                     )""")
     conn.commit()
 
+
+# --------
 # Programm
 # --------
 
 
-reset_database()
-watch(LOGFILE)
+if __name__ == "__main__":
+
+    # validating command line argument to specify location of logfile
+    try:
+        LOGFILE = sys.argv[1]
+    except IndexError:
+        print("Please specify log file.")
+        print("USAGE: $ python3 log.py <path/to/logfile> <path/to/dbfile>")
+        quit()
+    # verify if log file exists
+    if not os.path.isfile(LOGFILE):
+        raise FileNotFoundError(errno.ENOENT,
+                                os.strerror(errno.ENOENT),
+                                LOGFILE)
+    # validating command line argument to specify location of logfile
+    try:
+        DBFILE = sys.argv[2]
+    except IndexError:
+        print("Please specify DB file.")
+        print("USAGE: $ python3 log.py <path/to/logfile> <path/to/dbfile>")
+        quit()
+    # regex for nginx combined log format
+    LINEFORMAT = re.compile(
+        r"""(?P<ipaddress>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(?P<dateandtime>\d{2}\/[a-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} (\+|\-)\d{4})\] ((\"(GET|POST) )(?P<url>.+)(http\/1\.1")) (?P<statuscode>\d{3}) (?P<bytessent>\d+) (["](?P<refferer>(\-)|(.+))["]) (["](?P<useragent>.+)["])""", re.IGNORECASE)
+
+    reset_database()
+    watch(LOGFILE)
